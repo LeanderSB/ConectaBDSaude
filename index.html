@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi - BD Saúde</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+            background: linear-gradient(135deg, #28a745, #0099cc); /* Gradiente em verde e azul */
+        }
+
+        /* Container Principal */
+        .container {
+            background-color: white;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-top: 5px solid #28a745;
+        }
+
+        /* Título */
+        .container h2 {
+            color: #28a745;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        /* Rótulos e Campos de Entrada */
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* Botão */
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Checkbox e Pop-up */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Termo Pop-up */
+        #termoPopUp {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .close-popup {
+            cursor: pointer;
+            color: #28a745;
+            font-weight: bold;
+            float: right;
+            font-size: 1.2em;
+        }
+
+        /* Rodapé */
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Conecta BD Saúde</h2>
+        <form action="https://formspree.io/f/xbljyonk" method="POST" onsubmit="return validarFormulario()">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="contato">Telefone:</label>
+            <input type="text" id="contato" name="contato" required onkeyup="mascaraTelefone(this)" placeholder="(00) 00000-0000">
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="termos" name="termos" required>
+                <label for="termos">
+                    Aceito os <a href="#" onclick="abrirTermos()">termos de uso</a>
+                </label>
+            </div>
+
+            <button type="submit">Conectar-se ao Wi-Fi</button>
+        </form>
+        <div class="footer">
+            <p>BD Saúde &copy; 2022 - Todos os direitos reservados</p>
+        </div>
+    </div>
+
+    <!-- Pop-up dos Termos -->
+    <div id="termoPopUp">
+        <div class="popup-content">
+            <span class="close-popup" onclick="fecharTermos()">&times;</span>
+            <h3>Termos de Uso</h3>
+            <p>Seu acesso ao Wi-Fi implica concordância com as regras e restrições de uso...</p>
+        </div>
+    </div>
+</body>
+</html>
